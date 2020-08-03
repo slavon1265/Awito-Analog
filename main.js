@@ -1,5 +1,5 @@
 
-let dataBase = JSON.parse(localStorage.getItem('awito')) || [];
+let dataBase = JSON.parse(localStorage.getItem('awito')) || JSON.parse(db);
 
 const modalAdd = document.querySelector('.modal__add'),
       addAd    = document.querySelector('.add__ad'),
