@@ -1,5 +1,6 @@
+if (!localStorage.getItem('awito')) localStorage.setItem('awito', JSON.stringify(db))
 
-let dataBase = JSON.parse(localStorage.getItem('awito')) || JSON.parse(db);
+let dataBase = JSON.parse(localStorage.getItem('awito'));
 
 const modalAdd = document.querySelector('.modal__add'),
       addAd    = document.querySelector('.add__ad'),
