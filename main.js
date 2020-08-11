@@ -22,6 +22,7 @@ const modalAdd = document.querySelector('.modal__add'),
 
 const textFileBtn = modalFileBtn.textContent;
 const srcModalImage = modalImageAdd.src;
+let state = {};
 
        //CREATED ARRAY FROM ELEMENTS FROM MODAL SUBMIT (WITHOUT BUTTONS)
 const elementsModalSubmit = [...modalSubmit.elements]
@@ -60,7 +61,14 @@ const closeModal = event => {
         }
 }
 
+const closeFilterContainer = e =>{
+    if (!e.target.closest('.search__filter-form') && e.target!=searchInput && searchInput.dataset.deepsearch=='false'){
+        filterContainer.classList.add('hide')
+    }
+}
+
 document.addEventListener('keydown', closeModal)
+document.addEventListener('click', closeFilterContainer)
 
 const renderCards = () =>{
     catalog.textContent = '';
@@ -135,7 +143,7 @@ const categoryFilter = event => {
 
 const searchFilter = event => {
 if(catalog.parentNode.firstChild.tagName == 'SPAN') catalog.parentNode.firstChild.remove() 
-
+    
     const {target} = event;
     dataBase = JSON.parse(localStorage.getItem('awito'));
 
@@ -144,10 +152,10 @@ if(catalog.parentNode.firstChild.tagName == 'SPAN') catalog.parentNode.firstChil
               inputValue = target.value.toUpperCase(),
               description= item.descriptionItem.toUpperCase();
 
-        // return name.slice(0,inputValue.length) == inputValue || 
-        //        description.slice(0,inputValue.length) == inputValue
-
-        return name.includes(inputValue) || description.includes(inputValue)
+        return JSON.parse(searchInput.dataset.deepsearch) ? 
+            name.includes(inputValue) || description.includes(inputValue) : 
+            name.slice(0,inputValue.length) == inputValue
+           
     })
 
     dataBase.length == 0 ? 
@@ -159,8 +167,16 @@ if(catalog.parentNode.firstChild.tagName == 'SPAN') catalog.parentNode.firstChil
 searchInput.addEventListener('focus',e=>{
     const {target} = e;
     filterContainer.classList.remove('hide')
+    
 })
 searchInput.addEventListener('input', searchFilter)
+
+filterContainer.addEventListener('click', e =>{
+    let target = e.target;
+    if (target.id == 'deepSearchFilter'){
+        target.checked ? searchInput.dataset.deepsearch=true : searchInput.dataset.deepsearch = false;
+    }
+})
 
 menuСontainer.addEventListener('click', categoryFilter)
 
