@@ -10,6 +10,7 @@ const modalAdd = document.querySelector('.modal__add'),
       menuСontainer  = document.querySelector('.menu__container'),
       menuLinkLast   = document.querySelector('.menu__link-last'),
       searchInput    = document.querySelector('.search__input'),
+      filterContainer = document.querySelector('.search__filter-container')
       modalBtnWarning= document.querySelector('.modal__btn-warning'),
       modalFileInput = document.querySelector('.modal__file-input'),
       modalFileBtn   = document.querySelector('.modal__file-btn'),
@@ -135,22 +136,29 @@ const searchFilter = event => {
 if(catalog.parentNode.firstChild.tagName == 'SPAN') catalog.parentNode.firstChild.remove() 
 
     const {target} = event;
-    dataBase = JSON.parse(localStorage.getItem('awito')) || [];
+    dataBase = JSON.parse(localStorage.getItem('awito'));
 
     dataBase = dataBase.filter(item=>{
         const name = item.nameItem.toUpperCase(),
               inputValue = target.value.toUpperCase(),
               description= item.descriptionItem.toUpperCase();
 
-        return name.slice(0,inputValue.length) == inputValue || 
-               description.slice(0,inputValue.length) == inputValue
+        // return name.slice(0,inputValue.length) == inputValue || 
+        //        description.slice(0,inputValue.length) == inputValue
+
+        return name.includes(inputValue) || description.includes(inputValue)
     })
 
-    dataBase.length == 0 ? catalog.parentNode.insertAdjacentHTML('afterbegin',`<span>Ничего не найдено</span>`) : dataBase
+    dataBase.length == 0 ? 
+        catalog.parentNode.insertAdjacentHTML('afterbegin',`<span>Ничего не найдено</span>`) : 
+        dataBase
     
     renderCards()
 }
-
+searchInput.addEventListener('focus',e=>{
+    const {target} = e;
+    filterContainer.classList.remove('hide')
+})
 searchInput.addEventListener('input', searchFilter)
 
 menuСontainer.addEventListener('click', categoryFilter)
