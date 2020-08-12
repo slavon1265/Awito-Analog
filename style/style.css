@@ -286,6 +286,7 @@ form.modal__submit label textarea{
   height: fit-content;
   overflow: hidden;
 }
+
 .modal__block {
   background-color: #fff;
   padding: 30px;
@@ -293,6 +294,18 @@ form.modal__submit label textarea{
   margin: 0 30px;
   position: relative;
 }
+.modal__block-delete{
+  background-color: #fff;
+  padding: 30px;
+  max-width: 600px;
+  margin: 0 30px;
+  position: relative;
+}
+.modal__description-delete{
+  display: flex;
+  justify-content: center;
+}
+
 .modal__image {
   max-width: 200px;
   max-height: 200px;
@@ -477,10 +490,11 @@ margin-top: 25px;
 
   /*Work with modals*/
   .modal__block{
-    /* max-height: 100%; */
-    margin-top: 100px; 
-    width: 100%;
+    margin: 0;
+    height: 100vh;
+    width: 100vw;
   }
+  
   .modal__content{
     flex-direction: column;
   }
@@ -526,10 +540,5 @@ margin-top: 25px;
     right: 10px;
   }
   
-}
-@media (max-height:580px){
-  .modal__block{
-    margin: 0;
-  }
 }
 /*# sourceMappingURL=style.css.map6 */
