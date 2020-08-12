@@ -32,12 +32,22 @@
 	<header>
 		<div class="container">
 			<div class="header">
-				<div class="logo">
-					<a href="index.html">
-						<img src="img/logo.svg" alt="">
-					</a>
+				<div class="fake__wrapper"></div>
+				<div class="header__panel">
+					<div class="logo">
+						<a href="index.html">
+							<img src="img/logo.svg" alt="">
+						</a>
+					</div>
+					<div class="burger__menu">
+						<div class="burger__menu-item first"></div>
+						<div class="burger__menu-item second"></div>
+						<div class="burger__menu-item third"></div>
+					</div>
 				</div>
-				<nav class="menu">
+				
+
+				<nav class="menu menu-hide">
 					<ul class="menu__container">
 						<li class="menu__link"><a href="#" data-category="cloth">Одежда</a></li>
 						<li class="menu__link"><a href="#" data-category="foot">Обувь</a></li>
@@ -54,7 +64,7 @@
 			<div class="search">
 				<form class="search__form">
 					<label class="search__label">
-						<input class="search__input" type="search" data-deepsearch="false">
+						<input class="search__input" type="search" data-deepsearch="false" placeholder="Поиск товаров">
 					</label>
 				</form>
 				<div class="search__filter-container hide">
@@ -95,7 +105,7 @@
 		<div class="modal__block">
 			<h2 class="modal__header">Подать Объявление</h2>
 			<div class="modal__content">
-				<div><img class="modal__image modal__image-add" src="img/temp.jpg" alt="test"></div>
+				<div class="img-wrapper"><img class="modal__image modal__image-add" src="img/temp.jpg" alt="test"></div>
 				<form class="modal__submit">
 					<label class="modal__file-label">
 						<span class="btn modal__file-btn">Добавить фото</span>
@@ -150,14 +160,14 @@
 		<div class="modal__block">
 			<h2 class="modal__header">Купить</h2>
 			<div class="modal__content">
-				<div><img class="modal__image modal__image-item" src="img/temp.jpg" alt="test"></div>
+				<div class="img-wrapper"><img class="modal__image modal__image-item" src="img/temp.jpg" alt="test"></div>
 				<div class="modal__description">
 					<h3 class="modal__header-item">Тестовый Телефон</h3>
-					<p>Состояние: <span class="modal__status-item">отличное</span></p>
-					<p>Описание:
+					<p><span>Состояние:</span> <span class="modal__status-item">отличное</span></p>
+					<p><span>Описание:</span>
 						<span class="modal__description-item">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet, aut deleniti dolores ex explicabo fugit hic?</span>
 					</p>
-					<p>Цена: <span class="modal__cost-item">4000 грн</span></p>
+					<p><span>Цена:</span><span class="modal__cost-item">4000 грн</span></p>
 					<button class="btn">Купить</button>
 				</div>
 			</div>

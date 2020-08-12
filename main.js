@@ -5,9 +5,11 @@ let dataBase = JSON.parse(localStorage.getItem('awito'));
 const modalAdd = document.querySelector('.modal__add'),
       addAd    = document.querySelector('.add__ad'),
       modalBtnSubmit = document.querySelector('.modal__btn-submit'),
+      burgerMenu     = document.querySelector('.burger__menu')
       modalSubmit    = document.querySelector('.modal__submit'),
       modalItem      = document.querySelector('.modal__item'),
       catalog        = document.querySelector('.catalog'),
+      menuBar        = document.querySelector('.menu'),
       menuСontainer  = document.querySelector('.menu__container'),
       menuLinkLast   = document.querySelector('.menu__link-last'),
       searchInput    = document.querySelector('.search__input'),
@@ -41,6 +43,16 @@ const checkForm = () =>{
     const validForm = elementsModalSubmit.every(elem => elem.value);//return true when all forms elements have value
     modalBtnSubmit.disabled = !validForm;
     modalBtnWarning.style.display = validForm ? 'none' : ''; 
+}
+
+function burgerMenuToggle(e){
+    burgerMenu.classList.toggle('open')
+    menuBar.classList.toggle('menu-hide');
+    menuBar.style.marginBottom = menuBar.classList.contains('menu-hide') ?
+         -menuBar.offsetHeight+'px' :  '';
+
+    
+    
 }
 
 
@@ -136,8 +148,8 @@ const categoryFilter = event => {
             return item.category == target.dataset.category
          })
     }
-    
 
+    burgerMenuToggle()
     renderCards()
 }
 
@@ -164,6 +176,8 @@ if(catalog.parentNode.firstChild.tagName == 'SPAN') catalog.parentNode.firstChil
     
     renderCards()
 }
+
+burgerMenu.addEventListener('click', burgerMenuToggle)
 searchInput.addEventListener('focus',e=>{
     const {target} = e;
     filterContainer.classList.remove('hide')
@@ -200,12 +214,10 @@ modalFileInput.addEventListener('change', e=>{
             modalFileBtn.textContent = 'Размер фала должен быть не более 1МБ'
             modalFileInput.value = '';
             checkForm();
-        }
-
-
-        
+        } 
     })
 })
+
 
 
 modalSubmit.addEventListener('input', checkForm)
