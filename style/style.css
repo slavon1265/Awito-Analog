@@ -294,6 +294,7 @@ form.modal__submit label textarea{
 }
 .modal__image {
   max-width: 200px;
+  max-height: 260px;
   border: 1px solid #ccc;
   margin-right: 15px;
 }
