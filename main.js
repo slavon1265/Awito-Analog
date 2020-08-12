@@ -48,9 +48,18 @@ const checkForm = () =>{
 function burgerMenuToggle(e){
     burgerMenu.classList.toggle('open')
     menuBar.classList.toggle('menu-hide');
-    menuBar.style.marginBottom = menuBar.classList.contains('menu-hide') ?
-         -menuBar.offsetHeight+'px' :  '';
-
+    
+    if (document.body.clientWidth <= 515){
+         menuBar.style.marginBottom = menuBar.classList.contains('menu-hide') ?
+            -menuBar.offsetHeight+'px' :  '';
+    }
+    else{
+        menuBar.style.marginBottom='0'
+    }
+    document.querySelector('html').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    })
     
     
 }
@@ -149,8 +158,8 @@ const categoryFilter = event => {
          })
     }
 
-    burgerMenuToggle()
     renderCards()
+    burgerMenuToggle()
 }
 
 const searchFilter = event => {
@@ -274,4 +283,9 @@ catalog.addEventListener('click', function(e) {
         document.addEventListener('keydown', closeModal)
     }
 })
+
 renderCards()
+
+window.onresize = () => {
+    if (window.screen.width >=515) menuBar.style.marginBottom = ''
+}
