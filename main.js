@@ -13,7 +13,8 @@ const modalAdd = document.querySelector('.modal__add'),
       menuСontainer  = document.querySelector('.menu__container'),
       menuLinkLast   = document.querySelector('.menu__link-last'),
       searchInput    = document.querySelector('.search__input'),
-      filterContainer = document.querySelector('.search__filter-container')
+      filterContainer = document.querySelector('.search__filter-container'),
+      arrowUp         = document.querySelector('.arrowUp__btn')
       modalBtnWarning= document.querySelector('.modal__btn-warning'),
       modalFileInput = document.querySelector('.modal__file-input'),
       modalFileBtn   = document.querySelector('.modal__file-btn'),
@@ -62,6 +63,14 @@ function burgerMenuToggle(e){
     })
     
     
+}
+
+let pageScrollUp = () =>{
+    arrowUp.classList.add('arrowUp-hide');
+    document.querySelector('html').scrollIntoView({
+        behavior: 'smooth',
+        block: 'start'
+    })
 }
 
 
@@ -186,6 +195,10 @@ if(catalog.parentNode.firstChild.tagName == 'SPAN') catalog.parentNode.firstChil
     renderCards()
 }
 
+
+
+arrowUp.addEventListener('click', pageScrollUp)
+
 burgerMenu.addEventListener('click', burgerMenuToggle)
 searchInput.addEventListener('focus',e=>{
     const {target} = e;
@@ -289,3 +302,13 @@ renderCards()
 window.onresize = () => {
     if (window.screen.width >=515) menuBar.style.marginBottom = ''
 }
+
+document.addEventListener('scroll',()=>{
+    console.log(window.pageYOffset)
+    let scrollHeight = window.screen.width >= 515 ? 280 : 800;
+    if(window.pageYOffset>=scrollHeight){
+        arrowUp.classList.remove('arrowUp-hide')
+    }else if(window.pageYOffset<=scrollHeight){
+        arrowUp.classList.add('arrowUp-hide')
+    }
+})
