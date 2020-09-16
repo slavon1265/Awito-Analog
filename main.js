@@ -304,7 +304,6 @@ window.onresize = () => {
 }
 
 document.addEventListener('scroll',()=>{
-    console.log(window.pageYOffset)
     let scrollHeight = window.screen.width >= 515 ? 280 : 800;
     if(window.pageYOffset>=scrollHeight){
         arrowUp.classList.remove('arrowUp-hide')
